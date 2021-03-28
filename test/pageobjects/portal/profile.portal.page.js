@@ -1,6 +1,6 @@
 import PortalPage from './portal.page';
 
-class ProfilePortalPage extends Page {
+class ProfilePortalPage extends PortalPage {
 
     get iconUser () { return $('.ant-avatar-square'); }
 
