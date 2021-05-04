@@ -11,12 +11,12 @@ describe('Auth', () => {
         browser.execute('window.localStorage.clear()');
     });
 
-    it('should login with valid credentials', () => {
-        LoginPage.open();
-        LoginPage.setLogin('student@local.us');
-        LoginPage.setPassword('Localus');
-        LoginPage.clickSubmitButton();
-        ProfilePage.isOpen();
+    it('should login with valid credentials', async() => {
+        await LoginPage.open();
+        await LoginPage.setLogin('student@local.us');
+        await LoginPage.setPassword('Localus');
+        await LoginPage.clickSubmitButton();
+        await ProfilePage.isOpen();
     });
 
     it('submit button is disabled if login and password are absent', function () {

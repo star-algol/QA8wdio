@@ -7,37 +7,37 @@ class LoginPage extends Page {
     get errorToast () { return $('.ant-notification-notice-message');}
     get loginErrMsg () { return $('//div[contains(@class, "ant-form-item-with-help")][.//input[@id="normal_login_email"]]//div[@role="alert"]');}
 
-    open () {
+    async open () {
         return super.open('/user/login');
     }
 
-    setLogin (email){
-        this.inputUsername.setValue(email);
+    async setLogin (email){
+        return (await this.inputUsername).setValue(email);
     }
 
-    setPassword (password){
-        this.inputPassword.setValue(password);
+    async setPassword (password){
+        return (await this.inputPassword).setValue(password);
     }
 
-    clickSubmitButton () {
-        this.btnSubmit.click();
+    async clickSubmitButton () {
+        return (await this.btnSubmit).click();
     }
 
-    submitButtonIsDisabled () {
-        expect(this.btnSubmit).toBeDisabled();
+    async submitButtonIsDisabled () {
+        return expect(this.btnSubmit).toBeDisabled();
     }
 
     errorToastAppeared () {
-        expect(this.errorToast).toBeDisplayed();
+        return expect(this.errorToast).toBeDisplayed();
     }
 
-    emptyLoginInput() {
-        this.clearInput(this.inputUsername);
+    async emptyLoginInput() {
+        this.clearInput(await this.inputUsername);
     }
 
-    loginRequiredError() {
-        expect(this.loginErrMsg).toBeDisplayed();
-        expect(this.loginErrMsg.getText()).toEqual('Required');
+    async loginRequiredError() {
+        await expect(this.loginErrMsg).toBeDisplayed();
+        await expect(this.loginErrMsg.getText()).toEqual('Required');
     }
 
 }
